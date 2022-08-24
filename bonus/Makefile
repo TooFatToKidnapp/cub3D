@@ -6,7 +6,7 @@
 #    By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/08 20:35:45 by obouadel          #+#    #+#              #
-#    Updated: 2022/08/22 13:59:10 by aabdou           ###   ########.fr        #
+#    Updated: 2022/08/24 19:43:07 by aabdou           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,23 +53,27 @@ LIB =	./includes/parsing.h\
 
 MLX_LIB = ./mlx
 
+LIBFT = ./utils/libft/libft.a
+
 MLX_FLAG = -L./mlx -lmlx -framework openGL -framework AppKit
+
+MLX_MAKE = ./mlx/libmlx.a
 
 OBJT = $(SRCS:.c=.o)
 
 all : $(NAME)
 
-$(NAME): $(OBJT) LIBFT
-	@make -C $(MLX_LIB)
-	$(CC) $(FLAGS) $(MLX_FLAG) $(OBJT)  ./utils/libft/libft.a -o $(NAME)
-
 %.o : %.c $(LIB)
 	$(CC) $(FLAGS) -o $@ -c $<
 
-
-LIBFT :
+$(LIBFT) :
 	@make -C ./utils/libft
 
+$(MLX_MAKE) :
+	@make -C $(MLX_LIB)
+
+$(NAME) : $(OBJT) $(LIBFT) $(MLX_MAKE) $(LIB)
+	$(CC) $(OBJT) $(FLAGS) $(MLX_FLAG) ./utils/libft/libft.a -o $(NAME)
 
 clean:
 	$(RM) $(OBJT)

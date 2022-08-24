@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 10:43:30 by aabdou            #+#    #+#             */
-/*   Updated: 2022/08/21 18:21:21 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/08/24 19:36:04 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,19 @@ int	main(int ac, char **av)
 
 	check_argument(ac, av, &file_distiptor);
 	innit_map_rec(&var);
-	var.map = fill_map(file_distiptor);
+	var.map = fill_map(file_distiptor, &var);
 	if (close(file_distiptor) == -1)
 		return (free_2d(var.map), ft_putendl_fd("Error:\ncant close fd", 2), 1);
 	if (var.map != NULL)
 	{
 		if (check_file_requirements(&var))
-			return (free_2d(var.map), free_file_path(&var), 1);
+			return (free_2d(var.map), free_file_path(&var)
+				, free(var.check_nl), 1);
+		if (inspect_map(var.check_nl))
+			return (free_2d(var.map), printf("Error:\nnew line in map!\n")
+				, free_file_path(&var), free(var.check_nl), 1);
 	}
+	free(var.check_nl);
 	rendering(&data, &var);
 	return (0);
 }

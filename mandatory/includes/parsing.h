@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 10:41:41 by aabdou            #+#    #+#             */
-/*   Updated: 2022/08/24 16:17:34 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:09:57 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef struct s_content
 {
+	char		*check_nl;
 	char		*no;
 	char		*so;
 	char		*we;
@@ -39,7 +40,7 @@ void	check_argument(int ac, char **av, int *fd);
 
 // checking map requirements
 void	innit_map_rec(t_map_requirements *var);
-char	**fill_map(int file_dicriptor);
+char	**fill_map(int file_dicriptor, t_map_requirements *var);
 int		check_file_requirements(t_map_requirements *var);
 int		check_non_map_elm_for_error(t_map_requirements **var);
 int		check_tab(t_map_requirements *var, char **tab, int index);
@@ -67,5 +68,7 @@ void	get_map_height_and_width(int i, t_map_requirements *var);
 void	free_file_path(t_map_requirements *var);
 int		loop_through_string(char *str);
 void	check_comma(t_map_requirements *var, char *str);
+int		inspect_map(char *str);
+char	*ft_get_map(char *str);
 
 #endif

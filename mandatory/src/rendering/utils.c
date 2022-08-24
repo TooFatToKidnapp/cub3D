@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 11:35:40 by aabdou            #+#    #+#             */
-/*   Updated: 2022/08/22 16:04:31 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/08/24 17:36:58 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,9 @@
 int	check_file(t_data *data)
 {
 	if (open(data->var->so, O_RDWR) == -1)
-	{
-		free_2d(data->var->map);
-		free_file_path(data->var);
 		return (1);
-	}
 	else if (open(data->var->no, O_RDWR) == -1)
-	{
-		free_2d(data->var->map);
-		free_file_path(data->var);
 		return (1);
-	}
 	if (check_file2(data) == 1)
 		return (1);
 	return (0);
@@ -35,17 +27,9 @@ int	check_file(t_data *data)
 int	check_file2(t_data *data)
 {
 	if (open(data->var->ea, O_RDWR) == -1)
-	{
-		free_2d(data->var->map);
-		free_file_path(data->var);
 		return (1);
-	}
 	else if (open(data->var->we, O_RDWR) == -1)
-	{
-		free_2d(data->var->map);
-		free_file_path(data->var);
 		return (1);
-	}
 	return (0);
 }
 
