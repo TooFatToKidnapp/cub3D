@@ -1,4 +1,6 @@
 # cub3D
+the cub3d project is a 3D representation of a cube created using the C programming language and the MLX library. This project was completed as part of the curriculum at 42 Network, and is designed to demonstrate your skills in computer graphics and game design.
+
 resources:
 
 https://lodev.org/cgtutor/raycasting.html
